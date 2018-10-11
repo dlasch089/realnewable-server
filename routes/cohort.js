@@ -16,8 +16,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/create', (req, res, next) => {
   // ----- TODO -----//
-  const { flavour, topping } = req.body;
-  if (!flavour || !topping) {
+  const { type, location, language, startDate } = req.body;
+  if (!type || !location || !language || !startDate) {
     return res.status(422).json({ code: 'unprosessable-entity' });
   }
   const cohort = new Cohort(req.body);
@@ -28,19 +28,7 @@ router.post('/create', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id/calendar', (req, res, next) => {
-  const id = req.params.id;
-  if (!id || !ObjectId.isValid(id)) {
-    res.status(404).json({ code: 'not-found' });
-  }
-  Cohort.findById(id)
-    .then((cohort) => {
-      res.json(cohort);
-    })
-    .catch(next);
-});
-
-router.get('/:id/overview', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   if (!id || !ObjectId.isValid(id)) {
     res.status(404).json({ code: 'not-found' });
