@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const curriculumSchema = new Schema({
-  modules: {
+  units: {
     type: [ObjectId],
     ref: 'Unit'
   },
