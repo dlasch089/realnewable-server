@@ -605,120 +605,140 @@ const units = [{
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }, {
   title: 'BREAK',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
+  module: '1',
   duration: 15
 }];
 
