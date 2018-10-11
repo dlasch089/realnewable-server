@@ -1,7 +1,7 @@
 'use strict';
 
 const units = [{
-  title: 'HTML Intro',
+  title: 'HTML Intro 1',
   mandatory: true,
   category: 'lessons',
   subCategory: 'lecture',
@@ -11,7 +11,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS introduction',
+  title: 'JS Intro 1',
   mandatory: true,
   category: 'lessons',
   subCategory: 'lecture',
@@ -31,7 +31,7 @@ const units = [{
   duration: 30,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Semantics & A11y',
+  title: 'HTML Semantics & A11y 1',
   mandatory: true,
   category: 'lessons',
   subCategory: 'lecture',
@@ -51,7 +51,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS Arrays',
+  title: 'JS Arrays 1',
   mandatory: true,
   category: 'lessons',
   subCategory: 'lecture',
@@ -131,7 +131,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Intro',
+  title: 'HTML Intro 2',
   mandatory: true,
   category: 'lessons',
   subCategory: 'demo',
@@ -141,7 +141,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS Intro',
+  title: 'JS Intro 2',
   mandatory: true,
   category: 'lessons',
   subCategory: 'demo',
@@ -161,7 +161,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Intro',
+  title: 'HTML Intro 3',
   mandatory: true,
   category: 'lessons',
   subCategory: 'code-along',
@@ -181,7 +181,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Semantics & A11y',
+  title: 'HTML Semantics & A11y 2',
   mandatory: true,
   category: 'lessons',
   subCategory: 'code-along',
@@ -331,7 +331,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'Slack Clone',
+  title: 'Slack Clone 4',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'pair-programming',
@@ -341,7 +341,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Intro',
+  title: 'HTML Intro 4',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'daily-exercise',
@@ -361,7 +361,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'Slack Clone',
+  title: 'Slack Clone 5',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'daily-exercise',
@@ -371,7 +371,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS All time movies',
+  title: 'JS all time movies 1',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'daily-exercise',
@@ -381,7 +381,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Intro',
+  title: 'HTML Intro 5',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'review',
@@ -391,7 +391,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'HTML Semantics & A11y',
+  title: 'HTML Semantics & A11y 3',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'review',
@@ -421,7 +421,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'Slack Clone (CSS Responsive)',
+  title: 'Slack Clone (CSS Responsive) 1',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'review',
@@ -441,7 +441,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS Arrays',
+  title: 'JS Arrays 2',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'review',
@@ -461,7 +461,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS all time movies',
+  title: 'JS all time movies 2',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'review',
@@ -471,7 +471,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'JS Arrays',
+  title: 'JS Arrays 3',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'practice',
@@ -481,7 +481,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'Slack Clone',
+  title: 'Slack Clone 3',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'practice',
@@ -491,7 +491,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat lectus et felis ullamcorper, nec consequat sem semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum blandit leo quis nisl malesuada euismod. Vivamus ac neque elementum, pharetra ligula eu, pellentesque libero. Morbi dignissim placerat interdum. Morbi urna turpis, efficitur quis quam eget, rutrum luctus enim. Proin ex risus, fringilla vel malesuada eu, maximus vel nulla. Etiam sollicitudin mauris vel porta aliquet. Ut sollicitudin urna ultrices, facilisis nisl sit amet, sodales est. In commodo sodales lectus, nec maximus nisl dignissim in.'
 }, {
-  title: 'Slack Clone (CSS Responsive',
+  title: 'Slack Clone (CSS Responsive) 2',
   mandatory: true,
   category: 'practice&reviews',
   subCategory: 'practice',
@@ -541,7 +541,7 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet.'
 }, {
-  title: 'Stand-Up + Kick-Off',
+  title: 'Stand-Up + Kick-Off 1',
   mandatory: true,
   category: 'rituals',
   subCategory: 'ritual',
@@ -551,7 +551,7 @@ const units = [{
   duration: 60,
   description: 'Daily Standup and calendar review + Kick-off'
 }, {
-  title: 'Stand-Up + Kick-Off',
+  title: 'Stand-Up + Kick-Off 2',
   mandatory: true,
   category: 'rituals',
   subCategory: 'ritual',
@@ -561,7 +561,7 @@ const units = [{
   duration: 60,
   description: 'Daily Standup and calendar review + Kick-Off'
 }, {
-  title: 'Stand-Up + Kick-Off',
+  title: 'Stand-Up + Kick-Off 3',
   mandatory: true,
   category: 'rituals',
   subCategory: 'ritual',
@@ -571,7 +571,7 @@ const units = [{
   duration: 60,
   description: 'Daily Standup and calendar review + Kick-off'
 }, {
-  title: 'Stand-Up + Kick-Off',
+  title: 'Stand-Up + Kick-Off 4',
   mandatory: true,
   category: 'rituals',
   subCategory: 'ritual',
@@ -581,7 +581,7 @@ const units = [{
   duration: 60,
   description: 'Daily Standup and calendar review + Kick-off'
 }, {
-  title: 'Stand-Up + Kick-Off',
+  title: 'Stand-Up + Kick-Off 5',
   mandatory: true,
   category: 'rituals',
   subCategory: 'ritual',
@@ -601,140 +601,140 @@ const units = [{
   duration: 60,
   description: 'Lorem ipsum dolor sit amet.'
 }, {
-  title: 'BREAK',
+  title: 'BREAK 1',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 2',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 3',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 4',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 5',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 6',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 7',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 8',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 9',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 10',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 11',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 12',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 13',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 14',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 15',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 16',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 17',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 18',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 19',
   mandatory: false,
   category: 'break',
   subCategory: 'break',
   module: '1',
   duration: 15
 }, {
-  title: 'BREAK',
+  title: 'BREAK 20',
   mandatory: false,
   category: 'break',
   subCategory: 'break',

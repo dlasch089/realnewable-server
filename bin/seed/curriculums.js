@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, options)
     console.log('Connected to Mongo!');
     return Curriculum.remove({});
   })
-  .then((result) => {
+  .then(() => {
     console.log('Empty db');
     return Curriculum.insertMany(data);
   })

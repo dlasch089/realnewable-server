@@ -1,5 +1,9 @@
 'use strict';
 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
+
 const curriculums = [{
   units: [
     ObjectId('5bbf5c1bb80ba56395b0b5d2'),
