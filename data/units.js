@@ -5,7 +5,7 @@ const units = [{
   mandatory: true,
   category: 'lessons',
   subCategory: 'lecture',
-  links: [],
+  links: ['www.google.com'],
   learningObjectives: '1',
   module: '1',
   duration: 60,
