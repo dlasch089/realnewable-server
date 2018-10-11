@@ -1,0 +1,42 @@
+'use strict';
+
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const unitSchema = new Schema({
+  mandatory: {
+    type: Boolean,
+    required: true
+  },
+  category: {
+    type: String,
+    enum: ['lessons', 'rituals', 'practice&reviews'],
+    required: true
+  },
+  subCategory: {
+    type: String,
+    enum: ['lecture', 'research', 'code-along', 'demo', 'practice', 'review'],
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  links: {
+    type: Array
+  },
+  learningObjectives: {
+    type: String,
+    enum: ['1', '2', '3'],
+    required: true
+  },
+  duration: {
+    type: Number,
+    required: true
+  }
+});
+
+const Unit = mongoose.model('Unit', unitSchema);
+
+module.exports = Unit;
