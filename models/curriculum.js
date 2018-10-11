@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const curriculumSchema = new Schema({
-  units: {
-    type: [ObjectId],
+  units: [{
+    type: ObjectId,
     ref: 'Unit'
-  },
+  }],
   type: {
     type: String,
     enum: ['webdev', 'ux-ui'],

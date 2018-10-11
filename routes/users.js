@@ -2,10 +2,16 @@
 
 const express = require('express');
 const router = express.Router();
+// const ObjectId = require('mongoose').Types.ObjectId;
 
-/* GET users listing. */
+const User = require('../models/user');
+
 router.get('/', (req, res, next) => {
-  res.json({ code: 'HEY' });
+  User.find({})
+    .then((results) => {
+      res.json(results);
+    })
+    .catch(next);
 });
 
 module.exports = router;

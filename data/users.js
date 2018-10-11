@@ -3,15 +3,75 @@
 const users = [{
   email: 'axel.garcia94@gmail.com',
   password: '$2b$10$ECbqNtwfUDxte2bWui2bcOm5Fi1bZM6wLkxM0HmbSzTwkxRbZjuYK',
-  role: 'admin'
+  role: 'admin',
+  firstName: 'Axel',
+  lastName: 'Garcia'
 }, {
   email: 'franci.ropolo@gmail.com',
   password: '$2b$10$gNJTc/sva5.fNuTbqh4WQuW/hEa1qc.PoirLO2MKxQuYlcz.Nos7i',
-  role: 'admin'
+  role: 'admin',
+  firstName: 'Franci',
+  lastName: 'Ropolo'
 }, {
   email: 'jonathan@spielmannsbilder.de',
   password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
-  role: 'admin'
+  role: 'admin',
+  firstName: 'Jonathan',
+  lastName: 'Skudlik'
+}, {
+  email: 'teacher@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'teacher',
+  firstName: 'Andre',
+  lastName: 'Torgal'
+}, {
+  email: 'ta1@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Filipe',
+  lastName: 'Rainho'
+}, {
+  email: 'ta2@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Seba',
+  lastName: 'Nugnez'
+}, {
+  email: 'ta3@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Byron',
+  lastName: 'Bacusoy'
+}, {
+  email: 'ta4@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Alex',
+  lastName: 'Rodriguez'
+}, {
+  email: 'ta5@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Rapha',
+  lastName: 'Montenegro'
+}, {
+  email: 'ta5@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'ta',
+  firstName: 'Anna',
+  lastName: 'Fredriksson'
+}, {
+  email: 'staff1@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'staff',
+  firstName: 'Marcel',
+  lastName: 'Carneiro'
+}, {
+  email: 'student1@ironhack.com',
+  password: '$2b$10$4PBatLxbJMbxg.9lrdee4ewBiMmSwjU8gD9myZqgyTQ91yqg/XPiq',
+  role: 'student',
+  firstName: 'Diva',
+  lastName: 'SuperDoggy'
 }];
 
 module.exports = users;

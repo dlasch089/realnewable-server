@@ -6,21 +6,26 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const cohortSchema = new Schema({
-  teacher: {
+  teacher: [{
     type: ObjectId,
     ref: 'User'
-  },
-  tas: {
-    type: [ObjectId],
+  }],
+  tas: [{
+    type: ObjectId,
     ref: 'User'
-  },
-  students: {
-    type: [ObjectId],
+  }],
+  students: [{
+    type: ObjectId,
     ref: 'User'
-  },
+  }],
   type: {
     type: String,
     enum: ['webdev', 'ux-ui'],
+    required: true
+  },
+  location: {
+    type: String,
+    enum: ['madrid', 'barcelona', 'berlin', 'paris', 'amsterdam', 'munich', 'bogota', 'mexico-city', 'miami', 'sao-paulo', 'lisbon'],
     required: true
   },
   startDate: {

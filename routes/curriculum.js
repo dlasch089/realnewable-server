@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-// const ObjectId = require('mongoose').Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const Curriculum = require('../models/curriculum');
 
@@ -28,16 +28,17 @@ router.get('/', (req, res, next) => {
 //     .catch(next);
 // });
 
-// router.delete('/:id', (req, res, next) => {
-//   const id = req.params.id;
-//   if (!id || !ObjectId.isValid(id)) {
-//     res.status(404).json({ code: 'not-found' });
-//   }
-//   Cohort.remove({ _id: id })
-//     .then(() => {
-//       res.json({ code: 'cohort deleted' });
-//     })
-//     .catch(next);
-// });
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  if (!id || !ObjectId.isValid(id)) {
+    res.status(404).json({ code: 'not-found' });
+  }
+  Curriculum.findById(id)
+    .populate('units')
+    .then((results) => {
+      res.json(results);
+    })
+    .catch(next);
+});
 
 module.exports = router;
