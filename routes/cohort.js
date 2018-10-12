@@ -5,6 +5,7 @@ const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const Cohort = require('../models/cohort');
+const Day = require('../models/day');
 
 router.get('/', (req, res, next) => {
   Cohort.find({})
@@ -20,7 +21,20 @@ router.post('/create', (req, res, next) => {
   if (!type || !location || !language || !startDate) {
     return res.status(422).json({ code: 'unprosessable-entity' });
   }
-  const cohort = new Cohort(req.body);
+  const days = [];
+  for (let ix = 0; ix < 5; ix++) {
+    const day = new Day(startDate + ix);
+    day.save();
+    days.push(day);
+  }
+  const cohort = new Cohort({
+    teacher: req.body.teacher,
+    tas: req.body.tas,
+    students: req.body.students,
+    type: req.body.type,
+    language: req.body.language,
+    days: days
+  });
   cohort.save()
     .then(() => {
       res.status(200).json(cohort);

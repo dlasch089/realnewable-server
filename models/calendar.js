@@ -10,12 +10,8 @@ const calendarSchema = new Schema({
     type: ObjectId,
     ref: 'User'
   },
-  title: {
-    type: String,
-    required: true
-  },
   week: {
-    type: Number,
+    type: String,
     enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
     required: true
   },
@@ -24,18 +20,18 @@ const calendarSchema = new Schema({
     enum: ['1', '2', '3'],
     required: true
   },
-  days: {
-    type: [ObjectId],
+  days: [{
+    type: ObjectId,
+    ref: 'Day'
+  }],
+  adaptiveCurriculum: [{
+    type: ObjectId,
     ref: 'Unit'
-  },
-  adaptiveCurriculum: {
-    type: [ObjectId],
+  }],
+  parkingLot: [{
+    type: ObjectId,
     ref: 'Unit'
-  },
-  parkingLot: {
-    type: [ObjectId],
-    ref: 'Unit'
-  },
+  }],
   startDate: {
     type: Date,
     required: true

@@ -45,7 +45,7 @@ app.use(session({
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: [process.env.CLIENT_URL]
 }));
 
 app.use(logger('dev'));
