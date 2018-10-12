@@ -28,6 +28,10 @@ const cohortSchema = new Schema({
     enum: ['madrid', 'barcelona', 'berlin', 'paris', 'amsterdam', 'munich', 'bogota', 'mexico-city', 'miami', 'sao-paulo', 'lisbon'],
     required: true
   },
+  startDate: {
+    type: Date,
+    required: true
+  },
   days: [{
     type: ObjectId,
     ref: 'Day'
