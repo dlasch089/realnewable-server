@@ -34,6 +34,9 @@ router.get('/:id', (req, res, next) => {
     res.status(404).json({ code: 'not-found' });
   }
   Cohort.findById(id)
+    .populate('students')
+    .populate('tas')
+    .populate('teacher')
     .then((cohort) => {
       res.json(cohort);
     })
