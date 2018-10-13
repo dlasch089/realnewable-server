@@ -10,7 +10,15 @@ const daySchema = new Schema({
     type: Date,
     required: true
   },
-  units: [{
+  morning: [{
+    type: ObjectId,
+    ref: 'Unit'
+  }],
+  midday: [{
+    type: ObjectId,
+    ref: 'Unit'
+  }],
+  evening: [{
     type: ObjectId,
     ref: 'Unit'
   }]

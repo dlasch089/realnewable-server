@@ -36,6 +36,14 @@ const cohortSchema = new Schema({
     type: ObjectId,
     ref: 'Day'
   }],
+  adaptiveCurriculum: [{
+    type: ObjectId,
+    ref: 'Unit'
+  }],
+  parkingLot: [{
+    type: ObjectId,
+    ref: 'Unit'
+  }],
   language: {
     type: String,
     enum: ['es', 'en'],
