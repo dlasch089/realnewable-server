@@ -91,6 +91,30 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+router.put('/:id/add', (req, res, next) => {
+  const cohortId = req.params.id;
+  const update = req.body;
+  const options = { new: true };
+  Cohort.findByIdAndUpdate(cohortId, update, options)
+    .then(cohort => {
+      if (cohort) res.status(200).json(cohort);
+      else res.status(404).json({ message: 'cohort not found' });
+    })
+    .catch(error => next(error));
+});
+
+router.put('/:id/remove', (req, res, next) => {
+  const cohortId = req.params.id;
+  const update = req.body;
+  const options = { new: true };
+  Cohort.findByIdAndUpdate(cohortId, update, options)
+    .then(cohort => {
+      if (cohort) res.status(200).json(cohort);
+      else res.status(404).json({ message: 'cohort not found' });
+    })
+    .catch(error => next(error));
+});
+
 // router.delete('/:id', (req, res, next) => {
 //   const id = req.params.id;
 //   if (!id || !ObjectId.isValid(id)) {

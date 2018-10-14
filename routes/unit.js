@@ -5,6 +5,7 @@ const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const Unit = require('../models/unit');
+const Day = require('../models/day');
 
 router.get('/', (req, res, next) => {
   Unit.find({})
@@ -51,5 +52,31 @@ router.get('/:id', (req, res, next) => {
 //     })
 //     .catch(next);
 // });
+
+router.put('/transfer/:id', (req, res, next) => {
+  const unitId = req.params.id;
+  const sourceList = req.body.from;
+  const targetList = req.body.to;
+  Unit.findByIdAndUpdate(unitId, { $set: { list: targetList } }, { new: true })
+    .then(unit => {
+      Promise.all([
+        Day.findByIdAndUpdate(sourceList, { $pull: { units: unitId } }).exec(),
+        Day.findByIdAndUpdate(targetList, { $push: { units: unitId } }).exec()
+      ])
+        .then(list => res.status(200).json({ message: 'unit successfully updated', list: list }));
+    })
+    .catch(error => next(error));
+});
+
+router.put('/:id', (req, res, next) => {
+  const unitId = req.params.id;
+  const update = req.body;
+  const options = { new: true };
+  Unit.findByIdAndUpdate(unitId, update, options)
+    .then(unit => {
+      res.status(200).json(unit);
+    })
+    .catch(error => next(error));
+});
 
 module.exports = router;
