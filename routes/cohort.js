@@ -7,6 +7,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Cohort = require('../models/cohort');
 const Day = require('../models/day');
 const Curriculum = require('../models/curriculum');
+const Unit = require('../models/unit');
 
 router.get('/', (req, res, next) => {
   Cohort.find({})
@@ -22,11 +23,16 @@ router.post('/create', (req, res, next) => {
   if (!type || !location || !language || !startDate) {
     return res.status(422).json({ code: 'unprosessable-entity' });
   }
+
   const days = [];
 
   let startDay = new Day({ date: req.body.startDate });
   let firstDayAm = new Day({ date: startDay.date.setTime(startDay.date.getTime() + 1 * 86400000) });
   firstDayAm.save();
+  // .then((result) => {
+  //   const promisesOfUpdatingUnitId = data.map((result.units) => updateUnitIds(days.units));
+  //   return Promise.all(promisesOfUpdatingUnitId);
+  // });
   days.push(firstDayAm);
 
   for (let ix = 0; ix < 4; ix++) {
@@ -52,8 +58,9 @@ router.post('/create', (req, res, next) => {
   //     days.push(nextDayAm);
   //   }
   // }
+
   const category = req.body.type;
-  Curriculum.findOne({ type: category })
+  return Curriculum.findOne({ type: category })
     .then((result) => {
       const cohort = new Cohort({
         teacher: req.body.teacher,
@@ -66,13 +73,43 @@ router.post('/create', (req, res, next) => {
         parkingLot: result.units,
         days: days
       });
-      cohort.save()
+      return cohort.save()
+        .then(() => {
+          return cohort.populate('days');
+        })
+        .then(() => {
+          return Unit.find({ category: 'break' });
+        })
+        .then((results) => {
+          console.log(results);
+          console.log(results[1]._id);
+          cohort.days.forEach((day) => {
+            results.forEach((result) => {
+              day.units.push(result._id);
+              return day.save();
+            });
+          });
+        })
         .then(() => {
           res.status(200).json(cohort);
         });
     })
     .catch(next);
 });
+
+// function updateUnits (unit, curriculum, index) {
+//   return Unit.findOne({ title: unit })
+//     .then((unit) => {
+//       if (!unit) {
+//         throw new Error('Unknown unit ' + unit);
+//       }
+//       curriculum.units[index] = unit._id;
+//     });
+// }
+// function updateUnitIds (curriculum) {
+//   const promisesOfUpdatingOwnerId = curriculum.units.map((unit, index) => updateUnits(unit, curriculum, index));
+//   return Promise.all(promisesOfUpdatingOwnerId);
+// }
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -83,7 +120,7 @@ router.get('/:id', (req, res, next) => {
     .populate('students')
     .populate('tas')
     .populate('teacher')
-    .populate('days')
+    .populate({ path: 'days', populate: { path: 'units' } })
     .populate('parkingLot')
     .then((cohort) => {
       res.json(cohort);

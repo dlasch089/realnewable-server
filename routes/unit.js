@@ -54,14 +54,31 @@ router.get('/:id', (req, res, next) => {
 // });
 
 router.put('/transfer/:id', (req, res, next) => {
-  const unitId = req.params.id;
+  // const unitId = req.params.id;
+  const mongoose = require('mongoose');
+  const unitId = mongoose.mongo.ObjectID(req.params.id);
   const sourceList = req.body.from;
   const targetList = req.body.to;
+  let newCard = true;
   Unit.findByIdAndUpdate(unitId, { $set: { list: targetList } }, { new: true })
     .then(unit => {
       Promise.all([
         Day.findByIdAndUpdate(sourceList, { $pull: { units: unitId } }).exec(),
-        Day.findByIdAndUpdate(targetList, { $push: { units: unitId } }).exec()
+        Day.findById(targetList)
+          .then((result) => {
+            result.units.forEach((unit) => {
+              console.log(unit);
+              console.log(unitId);
+              if (unit.equals(unitId)) {
+                newCard = false;
+              }
+            });
+            if (newCard) {
+              Day.findByIdAndUpdate(targetList, { $push: { units: unitId } }).exec();
+            } else {
+              res.status(422).json({ code: 'unprosessable-entity' });
+            }
+          })
       ])
         .then(list => res.status(200).json({ message: 'unit successfully updated', list: list }));
     })

@@ -11,12 +11,12 @@ const unitSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['lessons', 'rituals', 'practice&reviews', 'break'],
+    enum: ['lessons', 'rituals', 'P&R', 'break'],
     required: true
   },
   subCategory: {
     type: String,
-    enum: ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'activity', 'pair-programming', 'daily-exercise', 'ritual', 'deck', 'break', 'talk'],
+    enum: ['lecture', 'research', 'code-along', 'demo', 'practice', 'review', 'activity', 'P.P.', 'D.E.', 'ritual', 'deck', 'break', 'talk'],
     required: true
   },
   title: {
