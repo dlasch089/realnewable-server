@@ -6,6 +6,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const Unit = require('../models/unit');
 const Day = require('../models/day');
+const Cohort = require('../models/cohort');
 
 router.get('/', (req, res, next) => {
   Unit.find({})
@@ -62,24 +63,48 @@ router.put('/transfer/:id', (req, res, next) => {
   let newCard = true;
   Unit.findByIdAndUpdate(unitId, { $set: { list: targetList } }, { new: true })
     .then(unit => {
-      Promise.all([
-        Day.findByIdAndUpdate(sourceList, { $pull: { units: unitId } }).exec(),
-        Day.findById(targetList)
-          .then((result) => {
-            result.units.forEach((unit) => {
-              console.log(unit);
-              console.log(unitId);
-              if (unit.equals(unitId)) {
-                newCard = false;
-              }
-            });
-            if (newCard) {
-              Day.findByIdAndUpdate(targetList, { $push: { units: unitId } }).exec();
-            } else {
-              res.status(422).json({ code: 'unprosessable-entity' });
-            }
-          })
-      ])
+      Cohort.findById(sourceList)
+        .then((result) => {
+          if (result) {
+            Cohort.findByIdAndUpdate(sourceList, { $pull: { parkingLot: unitId } }).exec()
+              .then(() => {
+                return Day.findById(targetList);
+              })
+              .then((result) => {
+                result.units.forEach((unit) => {
+                  console.log(unit);
+                  console.log(unitId);
+                  if (unit === unitId) {
+                    newCard = false;
+                  }
+                });
+                if (newCard) {
+                  return Day.findByIdAndUpdate(targetList, { $push: { units: unitId } }).exec();
+                } else {
+                  res.status(422).json({ code: 'unprosessable-entity' });
+                }
+              });
+          } else {
+            return Day.findByIdAndUpdate(sourceList, { $pull: { units: unitId } }).exec()
+              .then(() => {
+                return Cohort.findById(targetList);
+              })
+              .then((result) => {
+                result.parkingLot.forEach((unit) => {
+                  console.log(unit);
+                  console.log(unitId);
+                  if (unit.equals(unitId)) {
+                    newCard = false;
+                  }
+                });
+                if (newCard) {
+                  return Cohort.findByIdAndUpdate(targetList, { $push: { parkingLot: unitId } }).exec();
+                } else {
+                  res.status(422).json({ code: 'unprosessable-entity' });
+                }
+              });
+          }
+        })
         .then(list => res.status(200).json({ message: 'unit successfully updated', list: list }));
     })
     .catch(error => next(error));

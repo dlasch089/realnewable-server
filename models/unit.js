@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const unitSchema = new Schema({
   mandatory: {
@@ -41,7 +42,12 @@ const unitSchema = new Schema({
   },
   description: {
     type: String
-  }
+  },
+  day: {
+    type: ObjectId,
+    ref: 'Unit'
+  },
+  position: Number
 });
 
 const Unit = mongoose.model('Unit', unitSchema);
