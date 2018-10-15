@@ -9,14 +9,20 @@ const Day = require('../models/day');
 const Cohort = require('../models/cohort');
 
 router.get('/', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   Unit.find({})
     .then((results) => {
-      res.json(results);
+      res.status(200).json(results);
     })
     .catch(next);
 });
 
 // router.post('/create', (req, res, next) => {
+// if (req.session.currentUser) {
+//   return res.status(401).json({ code: 'unauthorized' });
+// }
 //   // ----- TODO -----//
 //   const { flavour, topping } = req.body;
 //   if (!flavour || !topping) {
@@ -31,33 +37,45 @@ router.get('/', (req, res, next) => {
 // });
 
 router.get('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   const id = req.params.id;
   if (!id || !ObjectId.isValid(id)) {
     res.status(404).json({ code: 'not-found' });
   }
   Unit.findById(id)
     .then((unit) => {
-      res.json(unit);
+      res.status(200).json(unit);
     })
     .catch(next);
 });
 
 // router.delete('/:id', (req, res, next) => {
+// if (req.session.currentUser) {
+//   return res.status(401).json({ code: 'unauthorized' });
+// }
 //   const id = req.params.id;
 //   if (!id || !ObjectId.isValid(id)) {
 //     res.status(404).json({ code: 'not-found' });
 //   }
 //   Cohort.remove({ _id: id })
 //     .then(() => {
-//       res.json({ code: 'cohort deleted' });
+//       res.status(200).json({ code: 'cohort deleted' });
 //     })
 //     .catch(next);
 // });
 
 router.put('/transfer/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   // const unitId = req.params.id;
   const mongoose = require('mongoose');
   const unitId = mongoose.mongo.ObjectID(req.params.id);
+  if (!unitId || !ObjectId.isValid(unitId)) {
+    res.status(404).json({ code: 'not-found' });
+  }
   const sourceList = req.body.from;
   const targetList = req.body.to;
   let newCard = true;
@@ -131,7 +149,13 @@ router.put('/transfer/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   const unitId = req.params.id;
+  if (!unitId || !ObjectId.isValid(unitId)) {
+    res.status(404).json({ code: 'not-found' });
+  }
   const update = req.body;
   const options = { new: true };
   Unit.findByIdAndUpdate(unitId, update, options)

@@ -10,6 +10,9 @@ const Curriculum = require('../models/curriculum');
 const Unit = require('../models/unit');
 
 router.get('/', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   Cohort.find({})
     .then((results) => {
       res.json(results);
@@ -18,6 +21,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   const { type, location, language, startDate, teacher } = req.body;
   if (!type || !location || !language || !startDate || !teacher) {
     return res.status(422).json({ code: 'unprosessable-entity' });
@@ -111,6 +117,9 @@ router.post('/create', (req, res, next) => {
 // }
 
 router.get('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   const id = req.params.id;
   if (!id || !ObjectId.isValid(id)) {
     res.status(404).json({ code: 'not-found' });
@@ -122,7 +131,7 @@ router.get('/:id', (req, res, next) => {
     .populate({ path: 'days', populate: { path: 'units' } })
     .populate('parkingLot')
     .then((cohort) => {
-      res.json(cohort);
+      res.status(200).json(cohort);
     })
     .catch(next);
 });
@@ -136,7 +145,7 @@ router.get('/:id', (req, res, next) => {
 //       if (cohort) res.status(200).json(cohort);
 //       else res.status(404).json({ message: 'cohort not found' });
 //     })
-//     .catch(error => next(error));
+//     .catch(next);
 // });
 
 // router.put('/:id/remove', (req, res, next) => {
@@ -148,10 +157,13 @@ router.get('/:id', (req, res, next) => {
 //       if (cohort) res.status(200).json(cohort);
 //       else res.status(404).json({ message: 'cohort not found' });
 //     })
-//     .catch(error => next(error));
+//     .catch(next);
 // });
 
 // router.delete('/:id', (req, res, next) => {
+// if (!req.session.currentUser) {
+//   return res.status(401).json({ code: 'unauthorized' });
+// }
 //   const id = req.params.id;
 //   if (!id || !ObjectId.isValid(id)) {
 //     res.status(404).json({ code: 'not-found' });

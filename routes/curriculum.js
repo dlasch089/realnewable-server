@@ -7,9 +7,12 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Curriculum = require('../models/curriculum');
 
 router.get('/', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   Curriculum.find({})
     .then((results) => {
-      res.json(results);
+      res.status(200).json(results);
     })
     .catch(next);
 });
@@ -29,6 +32,9 @@ router.get('/', (req, res, next) => {
 // });
 
 router.get('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.status(401).json({ code: 'unauthorized' });
+  }
   const id = req.params.id;
   if (!id || !ObjectId.isValid(id)) {
     res.status(404).json({ code: 'not-found' });
@@ -36,7 +42,7 @@ router.get('/:id', (req, res, next) => {
   Curriculum.findById(id)
     .populate('units')
     .then((results) => {
-      res.json(results);
+      res.status(200).json(results);
     })
     .catch(next);
 });

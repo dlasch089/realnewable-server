@@ -25,7 +25,7 @@ const cohortSchema = new Schema({
   },
   location: {
     type: String,
-    enum: ['madrid', 'barcelona', 'berlin', 'paris', 'amsterdam', 'munich', 'bogota', 'mexico-city', 'miami', 'sao-paulo', 'lisbon'],
+    enum: ['bcn'],
     required: true
   },
   startDate: {
