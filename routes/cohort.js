@@ -18,9 +18,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
-  // ----- TODO -----//
-  const { type, location, language, startDate } = req.body;
-  if (!type || !location || !language || !startDate) {
+  const { type, location, language, startDate, teacher } = req.body;
+  if (!type || !location || !language || !startDate || !teacher) {
     return res.status(422).json({ code: 'unprosessable-entity' });
   }
 
