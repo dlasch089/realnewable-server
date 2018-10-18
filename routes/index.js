@@ -5,17 +5,19 @@ const router = express.Router();
 
 const request = require('request');
 
-let energyData = null;
-
 /* GET home page. */
+/* Request to Entsoe platform */
 router.get('/', (req, res, next) => {
-  request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=B16&in_Domain=10YDE-EON------1&periodStart=201810150000&periodEnd=201910150000', (err, res, body) => {
-    if (err) { return console.log(err); }
-    console.log('What is this?', body);
-    console.log(body.explanation);
-    this.energyData = body;
+  request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=B16&in_Domain=10YDE-EON------1&periodStart=201810180000&periodEnd=201910180000', (err, response, body) => {
+    if (response) {
+      console.log(body);
+    } else {
+      console.log(body.explanation);
+      return console.log('What is this? An error?', err);
+    }
   });
-  res.json({ code: 'Hello Ironhackerzzzzzzz XP' });
+  res.json({ code: 'Anything' });
+  // res.json({ code: 'Hello Ironhackerzzzzzzz XP' });
 });
 
 module.exports = router;
