@@ -19,9 +19,16 @@ router.get('/', (req, res, next) => {
         if (error) {
           console.log('XML parse error:' + error);
         } else {
+          let resultArray = result.GL_MarketDocument.TimeSeries[0].Period[0].Point;
           // The time period of the generation is in GL_MarketDocument.TimeSeries[0].Period[0].Point --> Needs to be extracted for each object
-          console.log(result.GL_MarketDocument.TimeSeries[0].Period[0].Point);
-          res.send(result);
+          // console.log(result.GL_MarketDocument.TimeSeries[0].Period[0].Point);
+          let newResultArray = resultArray.map(el => {
+            console.log(el);
+            parseInt(el.position);
+            parseInt(el.quantity);
+          });
+          console.log(newResultArray);
+          res.json(result.GL_MarketDocument.TimeSeries[0].Period[0].Point);
         }
       });
     } else {
