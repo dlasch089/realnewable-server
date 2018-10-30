@@ -11,6 +11,7 @@ const cors = require('cors');
 // const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
+const forecastRouter = require('./routes/forecast');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
+app.use('/forecast', forecastRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
