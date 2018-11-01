@@ -7,27 +7,44 @@ const request = require('request');
 
 const parseString = require('xml2js').parseString;
 
-/*
-FUNCTION TO FETCH DATA DYNAMICALLY FROM THE API - PROBLEM: ASYNCHRONOUS CODE.
-*/
+const domainIds = {
+  tennet: '10YDE-EON------1',
+  transnet: '10YDE-ENBW-----N',
+  amprion: '10YDE-RWENET---I',
+  hertz: '10YDE-VE-------2'
+};
 
-function fetchData (docType, processType, psrType, in_Domain) {
-  request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=B16&in_Domain=10YDE-EON------1&periodStart=201810230000&periodEnd=201910230000', (err, response, body) => {
-    if (response) {
-      return response;
-    } else {
-      console.log(body.explanation);
-      return console.log('Error message:', err.message);
-    }
-  });
-}
+const psrTypes = {
+  solar: 'B16',
+  windOffshore: 'B18',
+  windOnshore: 'B19'
+};
+
+const psrTypesArray = ['B16', 'B18', 'B19'];
+
+let resultArrays = {};
 
 /* GET forecasts. */
 /* Request to Entsoe platform */
-router.get('/realnewable-time', (req, res, next) => {
-  let result = fetchData();
-  console.log(result);
-  res.json(result);
+router.get('/realnewable-time/:domainId', (req, res, next) => {
+  let today = new Date();
+  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let domainId = domainIds[req.params.domainId];
+  async function fetchData () {
+    for (const item of psrTypesArray) {
+      await request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=' + item + '&in_Domain=' + domainId + '&periodStart=' + dateNow + '&periodEnd=' + dateTomorrow, (err, response, body) => {
+        if (response) {
+          resultArrays[item] = await response.body;
+          console.log(resultArrays[item]);
+        } else {
+          console.log(body.explanation);
+          return console.log('Error message:', err.message);
+        }
+      });
+    }
+  }
+  res.send(resultArrays);
 });
 
 /*
