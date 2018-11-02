@@ -8,6 +8,7 @@ const request = require('request');
 const parseString = require('xml2js').parseString;
 
 const domainIds = {
+  germany: '10Y1001A1001A83F',
   tennet: '10YDE-EON------1',
   transnet: '10YDE-ENBW-----N',
   amprion: '10YDE-RWENET---I',
@@ -15,71 +16,69 @@ const domainIds = {
 };
 
 const psrTypes = {
+  total: 'total',
   solar: 'B16',
   windOffshore: 'B18',
   windOnshore: 'B19'
 };
 
-const psrTypesArray = ['B16', 'B18', 'B19'];
+const docTypes = {
+  total: 'A71',
+  solarWind: 'A69'
+};
 
-let resultArrays = {};
+function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
+  let url = null;
+  // validation of request to set the right url for the transparency platform
+  if (psrType === 'total') {
+    url = 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
+    '&periodStart=' + periodStart + '&periodEnd=' + periodEnd;
+  } else {
+    url = 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
+    '&periodStart=' + periodStart + '&periodEnd=' + periodEnd + '&psrType=' + psrType;
+  }
 
-/* GET forecasts. */
-/* Request to Entsoe platform */
-router.get('/realnewable-time/:domainId', (req, res, next) => {
-  let today = new Date();
-  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let domainId = domainIds[req.params.domainId];
-  async function fetchData () {
-    for (const item of psrTypesArray) {
-      await request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=' + item + '&in_Domain=' + domainId + '&periodStart=' + dateNow + '&periodEnd=' + dateTomorrow, (err, response, body) => {
-        if (response) {
-          resultArrays[item] = await response.body;
-          console.log(resultArrays[item]);
+  request(url, (err, response, body) => {
+    if (response.statusCode === 200) {
+    // Convert the xml-string with energy data to a json object
+      let xml = body;
+      parseString(xml, (error, result) => {
+      // error handler of the parser method
+        if (error || !result.GL_MarketDocument.TimeSeries) {
+          console.log('XML parse error:' + error);
+          return ({ message: 'No or unexpected answer from the api', result: result });
         } else {
-          console.log(body.explanation);
-          return console.log('Error message:', err.message);
+          let resultArray = result.GL_MarketDocument.TimeSeries[0].Period[0].Point;
+          let newResultArray = resultArray.map(el => {
+            return parseInt(el.quantity);
+          });
+          res.json({ message: 'Total generation forecast for ' + periodStart + ' until ' + periodEnd + ' Position 0 = 00:00; resolution: Hour', result: newResultArray });
         }
       });
+    // error-handler of the request method
+    } else {
+      res.json({ message: 'No or unexpected answer from the api', error: err, apiAnswer: body });
     }
-  }
-  res.send(resultArrays);
-});
+  });
+}
 
 /*
 
 TOTAL GENERATION FORECAST RETURNING AN ARRAY OF MW PER HOUR (POSITION 0 = 00:00 am, POSITION 24 = 23:00)
 
 */
-router.get('/total-generation', (req, res, next) => {
-  // expected date format: yyyyMMddHHHH
+router.get('/total-generation/:areaId', (req, res, next) => {
+  let documentType = docTypes.total;
+
+  // set the areaId from the get-request for the api-call
+  let areaId = req.params.areaId;
+
+  // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
   let today = new Date();
   let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
   let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  // console.log(dateNow, dateTomorrow);
-  request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A71&processType=A01&in_Domain=10Y1001A1001A83F&periodStart=' + dateNow + '&periodEnd=' + dateTomorrow, (err, response, body) => {
-    if (response) {
-      // Convert the xml-string with energy data to a json object
-      let xml = body;
-      parseString(xml, (error, result) => {
-        // error handler of the parser method
-        if (error) {
-          console.log('XML parse error:' + error);
-        } else {
-          let resultArray = result.GL_MarketDocument.TimeSeries[0].Period[0].Point;
-          let newResultArray = resultArray.map(el => {
-            return parseInt(el.quantity);
-          });
-          res.json({ message: 'Total generation forecast for ' + dateNow + ' until ' + dateTomorrow + ' Position 0 = 00:00; resolution: Hour', result: newResultArray });
-        }
-      });
-      // error-handler of the request method
-    } else {
-      console.log(body.explanation);
-      return console.log('Error message:', err.message);
-    }
-  });
+
+  fetchData(res, documentType, psrTypes.total, areaId, dateNow, dateTomorrow);
 });
 
 /*
@@ -87,33 +86,47 @@ router.get('/total-generation', (req, res, next) => {
 SOLAR GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 = 00:00 am, POSITION 96 = 23:00)
 
 */
-router.get('/solar', (req, res, next) => {
+router.get('/solar/:areaId', (req, res, next) => {
   // expected date format: yyyyMMddHHHH
   let today = new Date();
   let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
   let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  request('https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=A69&processType=A01&psrType=B16&in_Domain=10Y1001A1001A83F&periodStart=' + dateNow + '&periodEnd=' + dateTomorrow, (err, response, body) => {
-    if (response) {
-      // Convert the xml-string with energy data to a json object
-      let xml = body;
-      parseString(xml, (error, result) => {
-        // error handler of the parser method
-        if (error) {
-          console.log('XML parse error:' + error);
-        } else {
-          let resultArray = result.GL_MarketDocument.TimeSeries[0].Period[0].Point;
-          let newResultArray = resultArray.map(el => {
-            return parseInt(el.quantity);
-          });
-          res.json({ message: 'Total generation forecast for ' + dateNow + ' until ' + dateTomorrow + ' Position 0 = 00:00; resolution: Quarterhour', result: newResultArray });
-        }
-      });
-      // error-handler of the request method
-    } else {
-      console.log(body.explanation);
-      return console.log('Error message:', err.message);
-    }
-  });
+
+  let areaId = req.params.areaId;
+
+  fetchData(res, docTypes.solarWind, psrTypes.solar, areaId, dateNow, dateTomorrow);
+});
+
+/*
+
+WIND OFFSHORE GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 = 00:00 am, POSITION 96 = 23:00)
+
+*/
+router.get('/wind-offshore/:areaId', (req, res, next) => {
+  // expected date format: yyyyMMddHHHH
+  let today = new Date();
+  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+
+  let areaId = req.params.areaId;
+
+  fetchData(res, docTypes.solarWind, psrTypes.windOffshore, areaId, dateNow, dateTomorrow);
+});
+
+/*
+
+WIND ONSHORE GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 = 00:00 am, POSITION 96 = 23:00)
+
+*/
+router.get('/wind-onshore/:areaId', (req, res, next) => {
+  // expected date format: yyyyMMddHHHH
+  let today = new Date();
+  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+
+  let areaId = req.params.areaId;
+
+  fetchData(res, docTypes.solarWind, psrTypes.windOnshore, areaId, dateNow, dateTomorrow);
 });
 
 module.exports = router;
