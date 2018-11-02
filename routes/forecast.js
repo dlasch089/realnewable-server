@@ -101,6 +101,8 @@ router.get('/solar/:areaId', (req, res, next) => {
 
 WIND OFFSHORE GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 = 00:00 am, POSITION 96 = 23:00)
 
+MISSIG: validation, if it is transnet or hertz, as they do not have offshore-power-generation
+
 */
 router.get('/wind-offshore/:areaId', (req, res, next) => {
   // expected date format: yyyyMMddHHHH
