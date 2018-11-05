@@ -52,7 +52,7 @@ function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
           let newResultArray = resultArray.map(el => {
             return parseInt(el.quantity);
           });
-          res.json({ message: 'Total generation forecast for ' + periodStart + ' until ' + periodEnd + ' Position 0 = 00:00; resolution: Hour', result: newResultArray });
+          res.json({ message: 'forecast for ' + periodStart + ' until ' + periodEnd + ' Position 0 = 00:00; resolution: Hour', documentType: docType, process: psrType, result: newResultArray });
         }
       });
     // error-handler of the request method
