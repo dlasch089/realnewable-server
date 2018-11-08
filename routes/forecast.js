@@ -61,7 +61,7 @@ function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
       });
     // error-handler of the request method
     } else {
-      res.json({ message: 'No or unexpected answer from the api', error: err, apiAnswer: body });
+      res.json({ message: 'No or unexpected answer from the api', error: err, apiAnswer: body, url: finalURL });
     }
   });
 }
