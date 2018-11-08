@@ -27,11 +27,13 @@ const docTypes = {
   solarWind: 'A69'
 };
 
+let finalURL = null;
+
 function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
   let url = null;
   // validation of request to set the right url for the transparency platform
-  console.log('here is the API i am calling: ', 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
-  '&periodStart=' + periodStart + '&periodEnd=' + periodEnd);
+  finalURL = 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
+  '&periodStart=' + periodStart + '&periodEnd=' + periodEnd;
   if (psrType === 'total') {
     url = 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
     '&periodStart=' + periodStart + '&periodEnd=' + periodEnd;
@@ -48,7 +50,7 @@ function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
       // error handler of the parser method
         if (error || !result.GL_MarketDocument.TimeSeries) {
           console.log('XML parse error:' + error);
-          return ({ message: 'No or unexpected answer from the api', result: result });
+          return ({ message: 'No or unexpected answer from the api', result: result, url: finalURL });
         } else {
           let resultArray = result.GL_MarketDocument.TimeSeries[0].Period[0].Point;
           let newResultArray = resultArray.map(el => {
