@@ -30,6 +30,8 @@ const docTypes = {
 function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
   let url = null;
   // validation of request to set the right url for the transparency platform
+  console.log('here is the API i am calling: ', 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
+  '&periodStart=' + periodStart + '&periodEnd=' + periodEnd);
   if (psrType === 'total') {
     url = 'https://transparency.entsoe.eu/api?securityToken=' + process.env.ENTSOE_KEY + '&documentType=' + docType + '&processType=A01&in_Domain=' + domainIds[domainId] +
     '&periodStart=' + periodStart + '&periodEnd=' + periodEnd;
