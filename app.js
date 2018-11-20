@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const cors = require('cors');
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
@@ -15,11 +15,11 @@ const forecastRouter = require('./routes/forecast');
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI, {
-  keepAlive: true,
-  useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE
-});
+// mongoose.connect(process.env.MONGODB_URI, {
+//   keepAlive: true,
+//   useNewUrlParser: true,
+//   reconnectTries: Number.MAX_VALUE
+// });
 
 // app.use(session({
 //   store: new MongoStore({
@@ -34,10 +34,22 @@ mongoose.connect(process.env.MONGODB_URI, {
 //   }
 // }));
 
-app.use(cors({
+const whitelist = [process.env.CLIENT_URL];
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log('ORIGIN OF REQUEST: ' + origin);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-  origin: [process.env.CLIENT_URL]
-}));
+  optionsSuccessStatus: 200,
+  exposedHeaders: ['x-auth-token']
+};
+
+app.use(cors(corsOptions));
 
 app.use(logger('dev'));
 app.use(express.json());
