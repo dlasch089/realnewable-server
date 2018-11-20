@@ -5,8 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const mongoose = require('mongoose');
 const cors = require('cors');
+// const mongoose = require('mongoose');
 // const session = require('express-session');
 // const MongoStore = require('connect-mongo')(session);
 
@@ -15,12 +15,14 @@ const forecastRouter = require('./routes/forecast');
 
 const app = express();
 
+// Setup Mongoose - not used
 // mongoose.connect(process.env.MONGODB_URI, {
 //   keepAlive: true,
 //   useNewUrlParser: true,
 //   reconnectTries: Number.MAX_VALUE
 // });
 
+// Setup Sessions - not used
 // app.use(session({
 //   store: new MongoStore({
 //     mongooseConnection: mongoose.connection,
@@ -34,6 +36,7 @@ const app = express();
 //   }
 // }));
 
+// SETUP CORS
 const whitelist = [process.env.CLIENT_URL];
 const corsOptions = {
   origin: (origin, callback) => {
