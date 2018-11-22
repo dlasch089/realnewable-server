@@ -37,22 +37,10 @@ const app = express();
 // }));
 
 // SETUP CORS
-const whitelist = [process.env.CLIENT_URL];
-const corsOptions = {
-  origin: (origin, callback) => {
-    console.log('ORIGIN OF REQUEST: ' + origin);
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+app.use(cors({
   credentials: true,
-  optionsSuccessStatus: 200,
-  exposedHeaders: ['x-auth-token']
-};
-
-app.use(cors(corsOptions));
+  origin: [process.env.CLIENT_URL]
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
