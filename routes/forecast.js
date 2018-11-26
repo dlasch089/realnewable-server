@@ -155,7 +155,8 @@ router.get('/total-generation/tomorrow/:areaId', (req, res, next) => {
   if (dates != null) {
     fetchData(res, documentType, psrTypes.total, areaId, dates[0], dates[1]);
   } else {
-    res.json({ message: 'This service is only available after 6 pm!' });
+    let now = new Date().getHours();
+    res.json({ message: 'This service is only available after 6 pm!', time: now });
   }
 });
 
@@ -166,7 +167,8 @@ router.get('/solar/tomorrow/:areaId', (req, res, next) => {
   if (dates != null) {
     fetchData(res, docTypes.solarWind, psrTypes.solar, areaId, dates[0], dates[1]);
   } else {
-    res.json({ message: 'This service is only available after 6 pm!' });
+    let now = new Date().getHours();
+    res.json({ message: 'This service is only available after 6 pm!', time: now });
   }
 });
 
@@ -177,7 +179,8 @@ router.get('/wind-offshore/tomorrow/:areaId', (req, res, next) => {
   if (dates != null) {
     fetchData(res, docTypes.solarWind, psrTypes.windOffshore, areaId, dates[0], dates[1]);
   } else {
-    res.json({ message: 'This service is only available after 6 pm!' });
+    let now = new Date().getHours();
+    res.json({ message: 'This service is only available after 6 pm!', time: now });
   }
 });
 
@@ -188,7 +191,8 @@ router.get('/wind-onshore/tomorrow/:areaId', (req, res, next) => {
   if (dates != null) {
     fetchData(res, docTypes.solarWind, psrTypes.windOnshore, areaId, dates[0], dates[1]);
   } else {
-    res.json({ message: 'This service is only available after 6 pm!' });
+    let now = new Date().getHours();
+    res.json({ message: 'This service is only available after 6 pm!', time: now });
   }
 });
 
