@@ -85,8 +85,9 @@ function createDatesTomorrow () {
   if (now < 18) {
     return null;
   } else {
-    let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-    let dateDayAfter = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+    console.log(new Date(today.getFullYear(), today.getMonth(), today.getDate()));
+    let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+    let dateDayAfter = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
     let dates = [];
     dates.push(dateTomorrow, dateDayAfter);
     return dates;
