@@ -66,6 +66,16 @@ function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
   });
 }
 
+function createDates () {
+  // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
+  let today = new Date();
+  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+  let dates = [];
+  dates.push(dateNow, dateTomorrow);
+  return dates;
+}
+
 /*
 
 TOTAL GENERATION FORECAST RETURNING AN ARRAY OF MW PER HOUR (POSITION 0 = 00:00 am, POSITION 24 = 23:00)
@@ -76,13 +86,8 @@ router.get('/total-generation/:areaId', (req, res, next) => {
 
   // set the areaId from the get-request for the api-call
   let areaId = req.params.areaId;
-
-  // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
-  let today = new Date();
-  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-
-  fetchData(res, documentType, psrTypes.total, areaId, dateNow, dateTomorrow);
+  let dates = createDates();
+  fetchData(res, documentType, psrTypes.total, areaId, dates[0], dates[1]);
 });
 
 /*
@@ -91,14 +96,9 @@ SOLAR GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 =
 
 */
 router.get('/solar/:areaId', (req, res, next) => {
-  // expected date format: yyyyMMddHHHH
-  let today = new Date();
-  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-
   let areaId = req.params.areaId;
-
-  fetchData(res, docTypes.solarWind, psrTypes.solar, areaId, dateNow, dateTomorrow);
+  let dates = createDates();
+  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
 });
 
 /*
@@ -109,14 +109,9 @@ MISSIG: validation, if it is transnet or hertz, as they do not have offshore-pow
 
 */
 router.get('/wind-offshore/:areaId', (req, res, next) => {
-  // expected date format: yyyyMMddHHHH
-  let today = new Date();
-  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-
   let areaId = req.params.areaId;
-
-  fetchData(res, docTypes.solarWind, psrTypes.windOffshore, areaId, dateNow, dateTomorrow);
+  let dates = createDates();
+  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
 });
 
 /*
@@ -125,14 +120,9 @@ WIND ONSHORE GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSIT
 
 */
 router.get('/wind-onshore/:areaId', (req, res, next) => {
-  // expected date format: yyyyMMddHHHH
-  let today = new Date();
-  let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-  let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
-
   let areaId = req.params.areaId;
-
-  fetchData(res, docTypes.solarWind, psrTypes.windOnshore, areaId, dateNow, dateTomorrow);
+  let dates = createDates();
+  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
 });
 
 module.exports = router;
