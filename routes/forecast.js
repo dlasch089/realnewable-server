@@ -80,7 +80,8 @@ function createDatesTomorrow () {
   // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
   let today = new Date();
   // validation of time, as the prognosis for the following day is available after 6 pm
-  let now = today.getHours();
+  // +1 as the heroku servers are in a timezone with -1 hours
+  let now = today.getHours() + 1;
   if (now < 18) {
     return null;
   } else {
