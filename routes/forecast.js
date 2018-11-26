@@ -66,7 +66,7 @@ function fetchData (res, docType, psrType, domainId, periodStart, periodEnd) {
   });
 }
 
-function createDates () {
+function createDatesToday () {
   // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
   let today = new Date();
   let dateNow = today.toISOString().slice(0, 10).replace(/-/g, '') + '0000';
@@ -74,6 +74,22 @@ function createDates () {
   let dates = [];
   dates.push(dateNow, dateTomorrow);
   return dates;
+}
+
+function createDatesTomorrow () {
+  // create the periodStart and -End for the api-call; expected date format: yyyyMMddHHHH
+  let today = new Date();
+  // validation of time, as the prognosis for the following day is available after 6 pm
+  let now = today.getHours();
+  if (now < 18) {
+    return null;
+  } else {
+    let dateTomorrow = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+    let dateDayAfter = (new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3)).toISOString().slice(0, 10).replace(/-/g, '') + '0000';
+    let dates = [];
+    dates.push(dateTomorrow, dateDayAfter);
+    return dates;
+  }
 }
 
 /*
@@ -86,7 +102,7 @@ router.get('/total-generation/:areaId', (req, res, next) => {
 
   // set the areaId from the get-request for the api-call
   let areaId = req.params.areaId;
-  let dates = createDates();
+  let dates = createDatesToday();
   fetchData(res, documentType, psrTypes.total, areaId, dates[0], dates[1]);
 });
 
@@ -97,8 +113,8 @@ SOLAR GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSITION 0 =
 */
 router.get('/solar/:areaId', (req, res, next) => {
   let areaId = req.params.areaId;
-  let dates = createDates();
-  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
+  let dates = createDatesToday();
+  fetchData(res, docTypes.solarWind, psrTypes.solar, areaId, dates[0], dates[1]);
 });
 
 /*
@@ -110,8 +126,8 @@ MISSIG: validation, if it is transnet or hertz, as they do not have offshore-pow
 */
 router.get('/wind-offshore/:areaId', (req, res, next) => {
   let areaId = req.params.areaId;
-  let dates = createDates();
-  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
+  let dates = createDatesToday();
+  fetchData(res, docTypes.solarWind, psrTypes.windOffshore, areaId, dates[0], dates[1]);
 });
 
 /*
@@ -121,8 +137,59 @@ WIND ONSHORE GENERATION FORECAST RETURNING AN ARRAY OF MW PER QUARTERHOUR (POSIT
 */
 router.get('/wind-onshore/:areaId', (req, res, next) => {
   let areaId = req.params.areaId;
-  let dates = createDates();
-  fetchData(res, docTypes.solarWind, psrTypes.total, areaId, dates[0], dates[1]);
+  let dates = createDatesToday();
+  fetchData(res, docTypes.solarWind, psrTypes.windOnshore, areaId, dates[0], dates[1]);
+});
+
+/*
+
+SAME ROUTES BUT FOR THE FOLLOWING DAY - ONLY AVAILABLE AFTER 6 PM
+
+*/
+
+router.get('/total-generation/tomorrow/:areaId', (req, res, next) => {
+  let documentType = docTypes.total;
+  // set the areaId from the get-request for the api-call
+  let areaId = req.params.areaId;
+  let dates = createDatesTomorrow();
+  if (dates != null) {
+    fetchData(res, documentType, psrTypes.total, areaId, dates[0], dates[1]);
+  } else {
+    res.json({ message: 'This service is only available after 6 pm!' });
+  }
+});
+
+router.get('/solar/tomorrow/:areaId', (req, res, next) => {
+  // set the areaId from the get-request for the api-call
+  let areaId = req.params.areaId;
+  let dates = createDatesTomorrow();
+  if (dates != null) {
+    fetchData(res, docTypes.solarWind, psrTypes.solar, areaId, dates[0], dates[1]);
+  } else {
+    res.json({ message: 'This service is only available after 6 pm!' });
+  }
+});
+
+router.get('/wind-offshore/tomorrow/:areaId', (req, res, next) => {
+  // set the areaId from the get-request for the api-call
+  let areaId = req.params.areaId;
+  let dates = createDatesTomorrow();
+  if (dates != null) {
+    fetchData(res, docTypes.solarWind, psrTypes.windOffshore, areaId, dates[0], dates[1]);
+  } else {
+    res.json({ message: 'This service is only available after 6 pm!' });
+  }
+});
+
+router.get('/wind-onshore/tomorrow/:areaId', (req, res, next) => {
+  // set the areaId from the get-request for the api-call
+  let areaId = req.params.areaId;
+  let dates = createDatesTomorrow();
+  if (dates != null) {
+    fetchData(res, docTypes.solarWind, psrTypes.windOnshore, areaId, dates[0], dates[1]);
+  } else {
+    res.json({ message: 'This service is only available after 6 pm!' });
+  }
 });
 
 module.exports = router;
