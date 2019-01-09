@@ -24,24 +24,6 @@ ENTSOE_KEY = *your security token*
 
 CLIENT_URL = *your client URL*
 
-## How to get your own ENTSO-E security token:
-
-​The interface specification for the restful API is available online at: http://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
-
- Please follow the steps below so as to get the access granted:
-
-1. Register on Transparency Platform.
-
-2. Request access to Rest API by sending email to transparency@entsoe.eu . 
-
-Please indicate the email address with which you have registered.
-
-3. After our confirmation that access has been granted, login to Production platform
-
-4. Check your Account Settings. The Security Token should be visible under "Web Api Security Token"
-
-**Note: the API is currently running on a free plan of heroku and will therefore take some time to restart the server at the first call.**
-
 ## Available routes
 
 **base url: https://realnewable-server.herokuapp.com/**
@@ -68,7 +50,6 @@ Possible areaIds are the following, with "germany" covering whole Germany and th
   
 Example API-call: https://realnewable-server.herokuapp.com/forecast/solar/tennet
 
-
 ## How to run it locally?
 
 Please ensue the following steps for running the app locally. 
@@ -83,6 +64,24 @@ Please ensue the following steps for running the app locally.
 **Note: in file *forecast.js*, the parameters at line 89 and 90 need to be changed to your specific location and time zone. Please contact for improvement suggestions**
 
 Find more information how to run a Node.js server here: https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment
+
+## How to get your own ENTSO-E security token:
+
+​The interface specification for the restful API is available online at: http://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
+
+ Please follow the steps below so as to get the access granted:
+
+1. Register on Transparency Platform.
+
+2. Request access to Rest API by sending email to transparency@entsoe.eu . 
+
+Please indicate the email address with which you have registered.
+
+3. After our confirmation that access has been granted, login to Production platform
+
+4. Check your Account Settings. The Security Token should be visible under "Web Api Security Token"
+
+**Note: the API is currently running on a free plan of heroku and will therefore take some time to restart the server at the first call.**
 
 ## How to deploy the app using heroku?
 
