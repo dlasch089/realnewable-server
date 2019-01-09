@@ -29,17 +29,17 @@ CLIENT_URL = *your client URL*
 **base url: https://realnewable-server.herokuapp.com/**
 
 Prognosis energy data for the current day:
-1. /total-generation/:areaId
-2. /solar/:areaId
-3. /wind-offshore/:areaId
-4. /wind-onshore/:areaId
+1. forecast/total-generation/:areaId
+2. forecast/solar/:areaId
+3. forecast/wind-offshore/:areaId
+4. forecast/wind-onshore/:areaId
 
 Day-ahead prognosis data for the following day:
 **Note: Only available after 6pm German time!**
-1. /total-generation/tomorrow/:areaId
-2. /solar/tomorrow/:areaId
-3. /wind-offshore/tomorrow/:areaId
-4. /wind-onshore/tomorrow/:areaId
+1. forecast/total-generation/tomorrow/:areaId
+2. forecast/solar/tomorrow/:areaId
+3. forecast/wind-offshore/tomorrow/:areaId
+4. forecast/wind-onshore/tomorrow/:areaId
 
 Possible areaIds are the following, with "germany" covering whole Germany and the four areas of German grid operators (TenneT, Transnet, Amprion, 50hertz):
   - germany
