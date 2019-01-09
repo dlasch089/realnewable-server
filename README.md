@@ -18,7 +18,7 @@ For using the API you can fork or clone this repository and change the .env-vari
 
 The .env-file should contain the following:
 
-MONGODB_URI=mongodb://*your database*
+MONGODB_URI=mongodb://*your database* (not necessary, if db is not used)
 
 ENTSOE_KEY = *your security token*
 
@@ -67,12 +67,22 @@ Possible areaIds are the following, with "germany" covering whole Germany and th
   - hertz
 
 
-## Local Development
+## How to run it locally?
 
 Please ensue the following steps for running the app locally. 
 *Note: the realnewable API is written in Node.js with the express framework, using npm (https://www.npmjs.com/) as package management system. The author is recommending to use Visual Studio Code on Mac for development*
 
-1. Fork the project
-2. Use *npm install* to install all node-modules
-3. Run *nodemon start*
-4. App listens on port 3000 (e.g. http://localhost:3000/forecast/solar/germany)
+1. Git Clone the project and $ cd /realnewable-server
+2. $ npm install
+3. Create .env file and assign required variables.
+4. If using VSCode, run from inside app with nodemon engine (for debugging purposes)
+5. If not, run $ nodemon ./bin/www
+
+**Note: in file *forecast.js*, the parameters at line 89 and 90 need to be changed to your specific location and time zone. Please contact for improvement suggestions**
+
+Find more information how to run a Node.js server here: https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment
+
+## How to deploy the app using heroku?
+
+A full documentation of the process can be found on heroku: https://devcenter.heroku.com/articles/getting-started-with-nodejs
+
