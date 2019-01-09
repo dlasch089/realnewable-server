@@ -1,8 +1,8 @@
 # realnewable Server (in Node.js)
 
-This API is part of an open source project, developed in the scope of a master thesis at the Technical University of Munich. It is providing developers with the day-ahead information of the entso-e transparency platform (https://transparency.entsoe.eu/), in JSON-format for Germany. 
+This API is part of an open source project, developed in the scope of a master thesis at the Technical University of Munich. It is providing developers with the day-ahead information of the entso-e transparency platform (<a href="https://transparency.entsoe.eu/" target="_blank">https://transparency.entsoe.eu/</a>), in JSON-format for Germany. 
 
-A possible usage of the API is the web app called "realnewable", calculating the momentum of electricity consumption for German end-consumers: https://realnewable.herokuapp.com
+A possible usage of the API is the web app called "realnewable", calculating the momentum of electricity consumption for German end-consumers:  <a href="https://realnewable.herokuapp.com" target="_blank">https://realnewable.herokuapp.com</a>
 
 **Note: the app is currently running on a free plan of heroku and will therefore take some time to restart the server at the first call.**
 
@@ -12,7 +12,7 @@ For further questions, please contact: d.lasch@tum.de
 
 # Usage
 
-The API can be accessed through **https://realnewable-server.herokuapp.com/**, which also states the **base url** for the following routes. 
+The API can be accessed through ** <a href="https://realnewable-server.herokuapp.com/" target="_blank">https://realnewable-server.herokuapp.com/</a>**, which also states the **base url** for the following routes. 
 
 For using the API you can fork or clone this repository and change the .env-variables to your specific frontend application. Please be aware of the CORS-settings in this app, which is not automatically whitelisting all requesting apps. Additionally, you need to define your API-key in the .env. 
 
@@ -65,6 +65,8 @@ Possible areaIds are the following, with "germany" covering whole Germany and th
   - transnet
   - amprion
   - hertz
+  
+Example API-call: https://realnewable-server.herokuapp.com/forecast/solar/tennet
 
 
 ## How to run it locally?
