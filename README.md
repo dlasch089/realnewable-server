@@ -52,7 +52,7 @@ Example API-call: https://realnewable-server.herokuapp.com/forecast/solar/tennet
 
 ## How to run it locally?
 
-Please ensue the following steps for running the app locally. 
+Please ensue the following steps for running the app locally. Some basic knowledge about web development (especially Javascript) are required.
 *Note: the realnewable API is written in Node.js with the express framework, using npm (https://www.npmjs.com/) as package management system. The author is recommending to use Visual Studio Code on Mac for development*
 
 1. Git Clone the project and $ cd /realnewable-server
