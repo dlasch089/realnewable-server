@@ -12,7 +12,7 @@ For further questions, please contact: d.lasch@tum.de
 
 # Usage
 
-The API can be accessed through ** <a href="https://realnewable-server.herokuapp.com/" target="_blank">https://realnewable-server.herokuapp.com/</a>**, which also states the **base url** for the following routes. 
+The API can be accessed through <a href="https://realnewable-server.herokuapp.com/" target="_blank">https://realnewable-server.herokuapp.com/</a>, which also states the **base url** for the following routes. 
 
 For using the API you can fork or clone this repository and change the .env-variables to your specific frontend application. Please be aware of the CORS-settings in this app, which is not automatically whitelisting all requesting apps. Additionally, you need to define your API-key in the .env. 
 
