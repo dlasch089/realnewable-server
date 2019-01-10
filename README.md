@@ -28,6 +28,8 @@ CLIENT_URL = *your client URL*
 
 **base url: https://realnewable-server.herokuapp.com/**
 
+The following API calls will respond in .json-format, containing the MW in each area and per energy source, with an hourly (total generation) or quarterhourly (all others) resolution.
+
 Prognosis energy data for the current day:
 1. forecast/total-generation/:areaId
 2. forecast/solar/:areaId
@@ -49,6 +51,8 @@ Possible areaIds are the following, with "germany" covering whole Germany and th
   - hertz
   
 Example API-call: https://realnewable-server.herokuapp.com/forecast/solar/tennet
+
+Recommended: Chrome extension JSONView (https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc), for a better depiction of the responses.
 
 ## How to run it locally?
 
